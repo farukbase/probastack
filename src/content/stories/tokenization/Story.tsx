@@ -15,7 +15,7 @@ export default function TokenizationStory() {
       <StoryColumn>
         <Section eyebrow="The hook">
           <Lead>
-            Ask ChatGPT how many times the letter <strong>r</strong> appears in
+            Ask ChatGPT how many times the letter <strong>r</strong>{" "}appears in
             &ldquo;strawberry,&rdquo; and it often gets it wrong. A machine that
             can write essays and code… miscounts letters in a word a child can
             spell. Why?
@@ -24,7 +24,7 @@ export default function TokenizationStory() {
             <p>
               The answer is that an AI never actually sees the letters. Before a
               single word reaches the model, the text is chopped into pieces
-              called <strong>tokens</strong> — and the model only ever sees those
+              called <strong>tokens</strong>{" "}— and the model only ever sees those
               pieces. Let&rsquo;s look at the text the way it does.
             </p>
           </Prose>
@@ -53,18 +53,18 @@ export default function TokenizationStory() {
               A few patterns jump out once you play with it:
             </p>
             <p>
-              <strong>Common words stay whole.</strong> &ldquo;the,&rdquo;
+              <strong>Common words stay whole.</strong>{" "}&ldquo;the,&rdquo;
               &ldquo;sentence,&rdquo; &ldquo;read&rdquo; — each is a single token,
               because the model has seen them a billion times.
             </p>
             <p>
-              <strong>Rare or long words shatter.</strong> Something like
+              <strong>Rare or long words shatter.</strong>{" "}Something like
               &ldquo;tokenization&rdquo; becomes &ldquo;token&rdquo; +
               &ldquo;ization.&rdquo; The model stitches meaning back together from
               fragments.
             </p>
             <p>
-              <strong>Numbers break into chunks,</strong> and a space is usually
+              <strong>Numbers break into chunks,</strong>{" "}and a space is usually
               glued to the front of the next word. To the AI, &ldquo;
               cat&rdquo; (with a space) and &ldquo;cat&rdquo; are different
               tokens entirely.
@@ -85,7 +85,7 @@ export default function TokenizationStory() {
           <Prose>
             <p>
               Tokens aren&rsquo;t just trivia — they&rsquo;re the unit AI is{" "}
-              <em>measured</em> in. A model&rsquo;s &ldquo;context window&rdquo;
+              <em>measured</em>{" "}in. A model&rsquo;s &ldquo;context window&rdquo;
               (how much it can read at once) and your bill from the API are both
               counted in tokens, not words. And because English packs more words
               per token than most languages, the same paragraph in, say, Turkish

@@ -75,7 +75,7 @@ export default function MontyHallStory() {
         <Section eyebrow="Make a prediction">
           <Prose>
             <p>
-              Before the math: if you played <strong>a thousand</strong> games
+              Before the math: if you played <strong>a thousand</strong>{" "}games
               always switching, what win rate would you expect? Commit to a
               number in your head.
             </p>
@@ -83,7 +83,7 @@ export default function MontyHallStory() {
           <Reveal prompt="I’ve got my guess — reveal the truth">
             <Prose>
               <p>
-                Switching wins about <strong>two-thirds</strong> of the time.
+                Switching wins about <strong>two-thirds</strong>{" "}of the time.
                 Staying wins about one-third. Not 50/50 — not even close. Let the
                 simulator settle the argument.
               </p>
@@ -133,7 +133,7 @@ export default function MontyHallStory() {
           </Prose>
           <Callout title="The real lesson">
             The host&rsquo;s action carries <em>information</em>. He had to avoid
-            the car, so <em>which</em> door he opens is a clue — and conditioning
+            the car, so <em>which</em>{" "}door he opens is a clue — and conditioning
             on that clue is exactly Bayesian updating. Your gut ignored the clue;
             that&rsquo;s the trap.
           </Callout>

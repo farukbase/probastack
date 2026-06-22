@@ -24,7 +24,7 @@ export default function PermutationTestStory() {
           <Prose>
             <p>
               They each pull up their tips from the last eight nights to settle
-              it. Maria <em>does</em> have the higher average — but Sam has a
+              it. Maria <em>does</em>{" "}have the higher average — but Sam has a
               point too. Eight nights isn&rsquo;t many. Couldn&rsquo;t a gap
               that small just be the luck of the draw? How would you ever{" "}
               <em>know</em>?
@@ -39,7 +39,7 @@ export default function PermutationTestStory() {
             <p>
               Here&rsquo;s every night, side by side. Maria&rsquo;s smiley nights
               run a bit higher — her average beats Sam&rsquo;s by{" "}
-              <strong>$4.25</strong> a night.
+              <strong>$4.25</strong>{" "}a night.
             </p>
           </Prose>
           <Stage caption="Real money — but is $4.25 a real effect, or a coincidence?">
@@ -66,13 +66,13 @@ export default function PermutationTestStory() {
               So let&rsquo;s test that world. Toss all sixteen nights into a hat,
               shuffle, and randomly deal eight to a pretend &ldquo;Maria&rdquo;
               and eight to a pretend &ldquo;Sam.&rdquo; Measure the gap. That gap
-              is <em>pure luck</em> — we just made the labels up. Do it
+              is <em>pure luck</em>{" "}— we just made the labels up. Do it
               thousands of times and we map out exactly how big a gap luck alone
               tends to cook up.
             </p>
             <p>
               Then the only question left: is Maria&rsquo;s real{" "}
-              <strong>$4.25</strong> gap a normal, everyday luck-gap… or a
+              <strong>$4.25</strong>{" "}gap a normal, everyday luck-gap… or a
               freak one that luck almost never produces?
             </p>
           </Prose>
@@ -132,8 +132,8 @@ export default function PermutationTestStory() {
           </Prose>
           <Callout title="What the p-value is NOT">
             A small p-value doesn&rsquo;t mean the smiley is{" "}
-            <em>definitely</em> the cause, and it&rsquo;s <em>not</em> &ldquo;the
-            chance the smiley does nothing.&rdquo; It only says: <em>if</em> the
+            <em>definitely</em>{" "}the cause, and it&rsquo;s <em>not</em>{" "}&ldquo;the
+            chance the smiley does nothing.&rdquo; It only says: <em>if</em>{" "}the
             smiley did nothing, a gap this big would be a rare fluke. With just
             eight nights it&rsquo;s suggestive, not the final word — but the
             smiley effect is real enough that psychologists have measured it for
@@ -161,7 +161,7 @@ export default function PermutationTestStory() {
         <Section eyebrow="Where it shows up">
           <Prose>
             <p>
-              You just ran a <strong>permutation test</strong> — and the exact
+              You just ran a <strong>permutation test</strong>{" "}— and the exact
               same shuffle settles far bigger arguments. Did the new checkout
               button really boost sales, or was it a good week? Did the new drug
               actually beat the placebo? Did the redesign lift sign-ups? Every

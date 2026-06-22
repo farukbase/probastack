@@ -25,9 +25,9 @@ export default function LinearRegressionStory() {
             <p>
               To answer, you&rsquo;d mentally draw a line through the cloud of
               dots and read off the height at 7. That line is a{" "}
-              <strong>model</strong> — a simple rule that turns an input (hours)
+              <strong>model</strong>{" "}— a simple rule that turns an input (hours)
               into a prediction (score). The whole game is finding the{" "}
-              <em>right</em> line.
+              <em>right</em>{" "}line.
             </p>
           </Prose>
         </Section>
@@ -63,7 +63,7 @@ export default function LinearRegressionStory() {
           <Reveal prompt="Think you found the best line? Let the machine try">
             <Prose>
               <p>
-                Hit <strong>&ldquo;Let it learn&rdquo;</strong> above. Watch the
+                Hit <strong>&ldquo;Let it learn&rdquo;</strong>{" "}above. Watch the
                 line slide into place as the error drops to its lowest possible
                 value. The machine isn&rsquo;t doing anything mystical — it&rsquo;s
                 nudging the line downhill, again and again, until error stops
@@ -84,7 +84,7 @@ export default function LinearRegressionStory() {
           <Prose>
             <p>
               The downhill nudging has a name —{" "}
-              <strong>gradient descent</strong> — and it&rsquo;s the engine
+              <strong>gradient descent</strong>{" "}— and it&rsquo;s the engine
               underneath almost everything, from this two-knob line to a
               language model with billions of knobs. The numbers get
               astronomically bigger; the idea stays exactly this small.

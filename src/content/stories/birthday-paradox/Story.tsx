@@ -18,7 +18,7 @@ export default function BirthdayParadoxStory() {
       <StoryColumn>
         <Section eyebrow="The hook">
           <Lead>
-            Gather <strong>23</strong> random people in a room. What are the
+            Gather <strong>23</strong>{" "}random people in a room. What are the
             odds that two of them share a birthday — same day, same month?
           </Lead>
           <Prose>
@@ -52,7 +52,7 @@ export default function BirthdayParadoxStory() {
           <Prose>
             <p>
               Here&rsquo;s the flip side: how many people would you need for a{" "}
-              <strong>99%</strong> chance of a shared birthday? Most people
+              <strong>99%</strong>{" "}chance of a shared birthday? Most people
               guess hundreds. Lock in a number.
             </p>
           </Prose>
@@ -62,7 +62,7 @@ export default function BirthdayParadoxStory() {
                 Just <strong>57</strong>. And you hit 99.9% by{" "}
                 <strong>70</strong>. The curve rockets up far faster than
                 intuition expects — because every new person you add compares
-                themselves against <em>everyone</em> already there.
+                themselves against <em>everyone</em>{" "}already there.
               </p>
             </Prose>
           </Reveal>
@@ -92,21 +92,21 @@ export default function BirthdayParadoxStory() {
           <Prose>
             <p>
               Your gut quietly answers a different question — &ldquo;does someone
-              share <em>my</em> birthday?&rdquo; That really would need hundreds
-              of people. But the actual question is whether <em>any</em> two
+              share <em>my</em>{" "}birthday?&rdquo; That really would need hundreds
+              of people. But the actual question is whether <em>any</em>{" "}two
               people match, and the number of pairs grows shockingly fast.
             </p>
           </Prose>
           <Callout title="Count the pairs">
             23 people don&rsquo;t make 23 chances — they make{" "}
-            <strong>253</strong> pairs (that&rsquo;s 23 × 22 ÷ 2). With 253
+            <strong>253</strong>{" "}pairs (that&rsquo;s 23 × 22 ÷ 2). With 253
             chances for a collision against 365 days, a match around 50% stops
             feeling so impossible.
           </Callout>
           <Prose>
             <p>
               The clean way to compute it is to flip the question: find the
-              probability that <em>nobody</em> matches and subtract from 1. Each
+              probability that <em>nobody</em>{" "}matches and subtract from 1. Each
               new person must dodge all the birthdays already taken —
               <span className="font-mono text-[0.95em]">
                 {" "}
@@ -141,7 +141,7 @@ export default function BirthdayParadoxStory() {
           <Prose>
             <p>
               This isn&rsquo;t just a party trick. The same math powers the{" "}
-              <strong>birthday attack</strong> in cryptography: finding two
+              <strong>birthday attack</strong>{" "}in cryptography: finding two
               inputs that hash to the same value takes only about{" "}
               <span className="font-mono text-[0.95em]">√N</span> tries, not{" "}
               <span className="font-mono text-[0.95em]">N</span> — which is

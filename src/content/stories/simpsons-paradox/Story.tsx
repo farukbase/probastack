@@ -18,8 +18,8 @@ export default function SimpsonsParadoxStory() {
         <Section eyebrow="The hook">
           <Lead>
             Two real treatments for kidney stones. Treatment A cured a higher
-            percentage of patients with <em>small</em> stones. It also cured a
-            higher percentage with <em>large</em> stones. So A is the better
+            percentage of patients with <em>small</em>{" "}stones. It also cured a
+            higher percentage with <em>large</em>{" "}stones. So A is the better
             treatment — obviously. Right?
           </Lead>
           <Prose>
@@ -37,7 +37,7 @@ export default function SimpsonsParadoxStory() {
           <Prose>
             <p>
               Start on <strong>Split by stone size</strong>: Treatment A wins
-              both. Then hit <strong>Combined</strong> and watch what happens to
+              both. Then hit <strong>Combined</strong>{" "}and watch what happens to
               the overall winner.
             </p>
           </Prose>
@@ -88,8 +88,8 @@ export default function SimpsonsParadoxStory() {
           </Stage>
           <Prose>
             <p>
-              Doctors gave the tough <strong>large-stone</strong> cases mostly to
-              Treatment A, and the easy <strong>small-stone</strong> cases mostly
+              Doctors gave the tough <strong>large-stone</strong>{" "}cases mostly to
+              Treatment A, and the easy <strong>small-stone</strong>{" "}cases mostly
               to B. So A&rsquo;s overall score is dragged down by all the hard
               cases it took on, while B&rsquo;s is propped up by easy ones. The
               combined average isn&rsquo;t measuring the treatment — it&rsquo;s
@@ -97,7 +97,7 @@ export default function SimpsonsParadoxStory() {
             </p>
           </Prose>
           <Callout title="The lurking variable">
-            Stone size is a <strong>confounder</strong> — a hidden factor tangled
+            Stone size is a <strong>confounder</strong>{" "}— a hidden factor tangled
             up with both the treatment and the outcome. Average over it blindly
             and it quietly flips your conclusion. The fix is to compare like with
             like: small stones to small stones, large to large.
@@ -130,7 +130,7 @@ export default function SimpsonsParadoxStory() {
               tougher departments). It can make a hospital, a drug, or a sales
               campaign look better or worse than it is. The lesson is permanent:
               whenever you&rsquo;re shown a single average, ask{" "}
-              <strong>&ldquo;averaged over what?&rdquo;</strong> — because the
+              <strong>&ldquo;averaged over what?&rdquo;</strong>{" "}— because the
               groups underneath might be telling the opposite story.
             </p>
           </Prose>
