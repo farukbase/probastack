@@ -5,6 +5,8 @@ import { meta as montyHall } from "./monty-hall/meta";
 import MontyHallStory from "./monty-hall/Story";
 import { meta as birthdayParadox } from "./birthday-paradox/meta";
 import BirthdayParadoxStory from "./birthday-paradox/Story";
+import { meta as permutationTest } from "./permutation-test/meta";
+import PermutationTestStory from "./permutation-test/Story";
 
 /**
  * The story registry. Add one entry per story: its metadata plus the component
@@ -22,6 +24,7 @@ export interface StoryEntry {
 export const stories: StoryEntry[] = [
   { meta: montyHall, Component: MontyHallStory },
   { meta: birthdayParadox, Component: BirthdayParadoxStory },
+  { meta: permutationTest, Component: PermutationTestStory },
 ];
 
 export const publishedStories = (): StoryEntry[] =>
