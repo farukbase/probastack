@@ -7,6 +7,7 @@ import {
   Callout,
 } from "@/components/story/StoryShell";
 import { Reveal } from "@/components/story/Reveal";
+import { VideoEmbed } from "@/components/story/VideoEmbed";
 import { Quiz } from "@/components/interactive/Quiz";
 import { DoorGame } from "./components/DoorGame";
 import { MontyHallSim } from "./components/MontyHallSim";
@@ -36,6 +37,22 @@ export default function MontyHallStory() {
               about to test it.
             </p>
           </Prose>
+        </Section>
+      </StoryColumn>
+
+      <StoryColumn>
+        <Section eyebrow="On the big screen">
+          <Prose>
+            <p>
+              You may have seen this exact puzzle before. In the movie{" "}
+              <em>21</em>, an MIT professor springs it on a student to test
+              whether he&rsquo;ll think or just guess. Watch how fast intuition
+              and probability part ways:
+            </p>
+          </Prose>
+          <Stage caption="From the film 21 (2008) — the Monty Hall problem, dramatized.">
+            <VideoEmbed id="CYyUuIXzGgI" title="21 (2008) — the Monty Hall problem" />
+          </Stage>
         </Section>
       </StoryColumn>
 
