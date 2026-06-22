@@ -54,8 +54,10 @@ export function Stage({
   children: ReactNode;
   caption?: string;
 }) {
+  // Every Stage is a Proby landing target (see ProbyMode). The single page-wide
+  // Proby hops from one of these to the next, top to bottom.
   return (
-    <figure className="my-8">
+    <figure className="relative my-8" data-proby-target="">
       {children}
       {caption && (
         <figcaption className="mt-3 text-center text-sm text-muted">

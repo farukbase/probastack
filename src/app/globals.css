@@ -75,3 +75,25 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 .animate-fadeUp { animation: fadeUp 0.4s ease-out both; }
+
+/* ---------------------------------------------------------------------------
+   Proby perch — a mascot that pops out of a component corner, holds the edge,
+   and parachutes away when clicked. Multi-image, so it reads as animation.
+--------------------------------------------------------------------------- */
+@keyframes proby-emerge {
+  0%   { transform: translateY(28px) scale(0.9); opacity: 0; } /* hidden under the edge */
+  35%  { transform: translateY(-18px) scale(1.05); opacity: 1; } /* hop up out of the hole */
+  65%  { transform: translateY(5px); }   /* fall back, slight overshoot */
+  100% { transform: translateY(0); }     /* settle, holding the border */
+}
+@keyframes proby-prehop {
+  0%   { transform: translateY(0); }
+  55%  { transform: translateY(-20px); }
+  100% { transform: translateY(-10px); }
+}
+.proby-emerge   { animation: proby-emerge 0.72s cubic-bezier(0.34, 1.4, 0.64, 1) both; }
+.proby-prehop   { animation: proby-prehop 0.32s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .proby-emerge, .proby-prehop { animation: none; }
+}
