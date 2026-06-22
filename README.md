@@ -1,55 +1,54 @@
-# Probastack
+<div align="center">
 
-Interactive stories for data, statistics, AI, and machine learning.
-**Explore. Simulate. Understand.**
+# ◆ Probastack
 
-## Stack
+### Explore. Simulate. Understand.
 
-- **Next.js 16** (App Router) + **React 19** + **TypeScript**
-- **Tailwind CSS 4** (design tokens in `src/app/globals.css`)
-- Static-first: stories prerender; interactivity ships as client "islands"
+**Interactive stories for data, statistics, AI, and machine learning.**
 
-## How it's organized
+*Feel the concept before you learn the term.*
 
-```
-src/
-  app/                     # routes
-    page.tsx               # home (hero, featured stories, categories)
-    stories/[slug]/        # story renderer (driven by the registry)
-    categories/[slug]/     # category browse
-  content/
-    taxonomy.ts            # categories → subjects (pure data; reshuffle freely)
-    stories/
-      registry.ts          # slug → { meta, Component }; one entry per story
-      monty-hall/          # a story = meta + Story.tsx + bespoke components/
-  components/
-    interactive/           # REUSABLE islands: TrialSimulator, WinRateChart, Quiz…
-    story/                 # editorial layout helpers (Section, Prose, Reveal…)
-    site/                  # Header, Footer, StoryCard
-  lib/types.ts             # StoryMeta, Category, Subject
-```
+</div>
 
-### Adding a story
+---
 
-1. Create `src/content/stories/<slug>/meta.ts` (a `StoryMeta`).
-2. Create `Story.tsx` — a server component composing prose + interactive islands.
-   Reuse `components/interactive/*`; add bespoke pieces under the story's own
-   `components/` folder when a beat needs something custom.
-3. Register both in `src/content/stories/registry.ts`.
+Most explainers hand you a formula and hope it sticks. Probastack does the
+opposite. Every topic is a short, hands-on story where **you** drive the
+discovery — play with the idea, make a prediction, run a thousand simulations,
+and watch the intuition click into place.
 
-The shell primitives are **helpers, not a mandatory template** — each story
-uses whichever beats it needs, in any order.
+No walls of theory. No passive reading. Just the moment where it finally makes
+sense.
 
-## Develop
+## Why it's different
 
-```bash
-pnpm install
-pnpm dev      # http://localhost:3000
-pnpm build    # production build + typecheck
-```
+- **🎮 Interactive first** — pick the door, run the test, drag the slider. You learn by doing, not by scrolling.
+- **🔮 Predict, then reveal** — commit to a guess before the answer unlocks. The surprise is the lesson.
+- **📊 Simulate at scale** — push a concept to a thousand trials and let the math reveal itself, live.
+- **✨ Crafted, not templated** — every story is built to be *felt*, with bespoke visuals where the idea demands them.
+- **🧠 Connected knowledge** — stories link into a growing map of quantitative thinking, from probability to LLMs.
 
-## Deploy
+## What you'll explore
 
-Designed to deploy as a single Vercel project. Heavy/stateful backends (AI
-generation, queues, databases) can live on Railway later without touching this
-app.
+| | |
+|---|---|
+| **Statistics** | Probability, inference, and the intuitions behind the math |
+| **Experimentation** | A/B testing, causal inference, and trustworthy experiments |
+| **Machine Learning** | From linear regression to gradient boosting, built up by intuition |
+| **AI & LLMs** | Tokens, embeddings, attention, and how modern AI actually works |
+| **Analytics** | Funnels, retention, cohorts, and the metrics that matter |
+
+## For the curious
+
+Students, analysts, data scientists, ML & AI engineers, product managers — or
+anyone who's ever nodded along to a concept they didn't truly *get*.
+
+Probastack is the place you'll recommend when someone finally says:
+
+> *"Oh — now I understand it."*
+
+<div align="center">
+
+**◆ probastack.com**
+
+</div>
