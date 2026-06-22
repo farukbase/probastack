@@ -18,5 +18,5 @@ export const meta: StoryMeta = {
   estimatedMinutes: 9,
   tags: ["probability", "conditional-probability", "bayes", "simulation"],
   status: "published",
-  related: [],
+  related: ["the-birthday-paradox"],
 };
