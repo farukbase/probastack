@@ -7,6 +7,12 @@ import { meta as birthdayParadox } from "./birthday-paradox/meta";
 import BirthdayParadoxStory from "./birthday-paradox/Story";
 import { meta as permutationTest } from "./permutation-test/meta";
 import PermutationTestStory from "./permutation-test/Story";
+import { meta as tokenization } from "./tokenization/meta";
+import TokenizationStory from "./tokenization/Story";
+import { meta as linearRegression } from "./linear-regression/meta";
+import LinearRegressionStory from "./linear-regression/Story";
+import { meta as simpsonsParadox } from "./simpsons-paradox/meta";
+import SimpsonsParadoxStory from "./simpsons-paradox/Story";
 
 /**
  * The story registry. Add one entry per story: its metadata plus the component
@@ -25,6 +31,9 @@ export const stories: StoryEntry[] = [
   { meta: montyHall, Component: MontyHallStory },
   { meta: birthdayParadox, Component: BirthdayParadoxStory },
   { meta: permutationTest, Component: PermutationTestStory },
+  { meta: tokenization, Component: TokenizationStory },
+  { meta: linearRegression, Component: LinearRegressionStory },
+  { meta: simpsonsParadox, Component: SimpsonsParadoxStory },
 ];
 
 export const publishedStories = (): StoryEntry[] =>
