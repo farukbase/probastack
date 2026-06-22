@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { categories } from "@/content/taxonomy";
 import { publishedStories } from "@/content/stories/registry";
 import { StoryCard } from "@/components/site/StoryCard";
@@ -11,6 +12,14 @@ export default function Home() {
       {/* Hero */}
       <section className="bg-dotgrid border-b border-border">
         <div className="mx-auto max-w-3xl px-5 py-20 text-center sm:py-28">
+          <Image
+            src="/proby/sitting.webp"
+            alt="Proby, the Probastack mascot"
+            width={480}
+            height={560}
+            priority
+            className="mx-auto mb-6 h-32 w-auto drop-shadow-[0_8px_24px_rgba(79,70,229,0.25)] sm:h-40"
+          />
           <p className="mb-4 text-sm font-medium uppercase tracking-widest text-accent">
             Data · Statistics · AI · Machine Learning
           </p>

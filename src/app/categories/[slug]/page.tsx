@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { categories, categoryById } from "@/content/taxonomy";
@@ -57,10 +58,17 @@ export default async function CategoryPage({ params }: Params) {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-dashed border-border p-10 text-center text-muted">
-            <p className="font-medium text-foreground">Stories coming soon</p>
+          <div className="flex flex-col items-center rounded-2xl border border-dashed border-border p-10 text-center text-muted">
+            <Image
+              src="/proby/sitting.webp"
+              alt="Proby"
+              width={480}
+              height={560}
+              className="mb-3 h-24 w-auto opacity-90"
+            />
+            <p className="font-medium text-foreground">Proby&rsquo;s still writing these</p>
             <p className="mt-1 text-sm">
-              This category is still being written. Check back shortly.
+              This category is on the way. Check back shortly.
             </p>
           </div>
         )}
