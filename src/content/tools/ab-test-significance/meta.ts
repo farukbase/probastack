@@ -6,7 +6,7 @@ export const meta: ToolMeta = {
   tagline:
     "Drop in the numbers from two variants and find out whether the difference is real — or just noise.",
   description:
-    "Enter the visitors and conversions for your control and variant. The calculator runs a two-proportion z-test and tells you the lift, the p-value, your confidence, and whether the result clears your significance threshold.",
+    "Compare a conversion rate (two-proportion z-test) or a continuous metric like revenue or time-on-page (Welch's t-test). Get the lift, p-value, confidence, a CI chart, and the null distribution — one- or two-tailed, at any confidence level.",
   categoryId: "experimentation",
   icon: "🧪",
   status: "live",
