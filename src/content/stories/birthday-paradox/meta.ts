@@ -15,7 +15,7 @@ export const meta: StoryMeta = {
     "Intuition vs Probability",
   ],
   difficulty: "Beginner",
-  estimatedMinutes: 7,
+  estimatedMinutes: 9,
   tags: ["probability", "combinatorics", "simulation", "beginner"],
   status: "published",
   related: ["the-monty-hall-trap"],

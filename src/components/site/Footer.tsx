@@ -1,10 +1,9 @@
 import Image from "next/image";
-import { CoffeeLink } from "@/components/site/Support";
 
 export function Footer() {
   return (
     <footer className="mt-auto border-t border-border">
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-5 py-6 text-sm text-muted sm:flex-row">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-5 py-6 text-sm text-muted sm:flex-row">
         <div className="flex items-center gap-3">
           <Image
             src="/proby/face.webp"
@@ -20,7 +19,9 @@ export function Footer() {
             <span>Explore. Simulate. Understand.</span>
           </div>
         </div>
-        <CoffeeLink />
+        <p className="flex items-center gap-1.5">
+          Made with <span className="text-danger">❤</span> for curious minds
+        </p>
       </div>
     </footer>
   );

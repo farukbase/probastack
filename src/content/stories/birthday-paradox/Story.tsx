@@ -122,17 +122,98 @@ export default function BirthdayParadoxStory() {
       </StoryColumn>
 
       <StoryColumn>
+        <Section eyebrow="The math, gently">
+          <Prose>
+            <p>
+              Here&rsquo;s the trick that makes this tractable: don&rsquo;t count
+              the matches — count the <em>opposite</em>. Work out the chance that{" "}
+              <em>nobody</em>{" "}shares a birthday, then subtract from 1. That
+              path is far easier to build up one person at a time.
+            </p>
+            <p>
+              The first person can land on any day. The second has to dodge that
+              one taken day, so they avoid it with probability 364⁄365. The third
+              must dodge two days (363⁄365), the fourth three (362⁄365), and so
+              on. Multiply those dodges together and you get the probability that
+              the whole room stays collision-free.
+            </p>
+          </Prose>
+          <Reveal prompt="Show me the formula">
+            <Prose>
+              <p>
+                <span className="font-mono text-[0.95em]">
+                  P(no match) = (365⁄365) × (364⁄365) × … × ((365 − n + 1)⁄365)
+                </span>
+                , which packs down to{" "}
+                <span className="font-mono text-[0.95em]">
+                  P(no match) = 365! ⁄ (365ⁿ × (365 − n)!)
+                </span>
+                . The answer we actually want is the flip side:{" "}
+                <span className="font-mono text-[0.95em]">
+                  P(at least one match) = 1 − P(no match)
+                </span>
+                .
+              </p>
+            </Prose>
+          </Reveal>
+          <Prose>
+            <p>
+              So why does it feel so wrong? Because our gut pictures{" "}
+              <em>someone matching me</em> — one fixed birthday against the
+              crowd. But the real test is whether <em>any</em>{" "}pair matches.
+              With n people there are n(n − 1)⁄2 pairs, and that grows fast.
+            </p>
+          </Prose>
+          <Callout title="Count the pairs, not the people">
+            At n = 23 there are 23 × 22 ⁄ 2 = <strong>253</strong>{" "}distinct
+            pairs — 253 separate chances for a collision. That&rsquo;s why the
+            answer is a coin flip, not the tiny number intuition expects.
+          </Callout>
+          <Prose>
+            <p>
+              Plug the numbers in and it lands where the slider promised: n = 23
+              gives <strong>≈ 50.7%</strong>, and by n = 70 you&rsquo;re at a
+              near-certain <strong>≈ 99.9%</strong>. The formula and the
+              intuition finally agree.
+            </p>
+          </Prose>
+        </Section>
+      </StoryColumn>
+
+      <StoryColumn>
         <Section eyebrow="Check yourself">
-          <Quiz
-            question="Why does a room of just 23 people reach a 50% chance of a shared birthday?"
-            options={[
-              "Because birthdays cluster in certain months",
-              "Because you compare every pair — 23 people make 253 pairs",
-              "Because 23 is close to half of 365",
-            ]}
-            correct={1}
-            explanation="It's combinatorial. The chance grows with the number of pairs (23 × 22 ÷ 2 = 253), not the number of people. That's why it climbs so much faster than intuition predicts."
-          />
+          <div className="flex flex-col gap-4">
+            <Quiz
+              question="Why does it take only ~23 people, not ~183 (about half of 365), to reach a 50% chance of a shared birthday?"
+              options={[
+                "Because birthdays cluster in certain months",
+                "Because 183 would only be right if you needed every day covered",
+                "Because the chance grows with pairs — 23 people make 253 of them",
+              ]}
+              correct={2}
+              explanation="It's the number of pairs that matters, not the number of people. 23 × 22 ÷ 2 = 253 pairs gives 253 chances for a collision, so the probability reaches 50% far sooner than the 'half of 365' guess suggests."
+            />
+            <Quiz
+              question="How is 'does anyone in the room share a birthday?' different from 'does anyone share MY birthday?'"
+              options={[
+                "The first checks every pair; the second fixes one birthday against the crowd, which really would need hundreds",
+                "They're the same question phrased two ways",
+                "The second is more likely because your birthday is special",
+              ]}
+              correct={0}
+              explanation="Your gut quietly answers the second, harder question — one fixed date versus everyone. The actual question lets any two people match, which is why far fewer people are needed."
+            />
+            <Quiz
+              question="What's the cleanest way to compute the chance of at least one shared birthday?"
+              options={[
+                "Add up the probability of each possible matching pair",
+                "Find the probability that nobody matches, then subtract it from 1",
+                "Multiply 23 by 1/365",
+              ]}
+              correct={1}
+              explanation="Counting the opposite is far easier: each new person must dodge the days already taken (364/365, 363/365, …). Multiply those, then 1 − P(no match) gives the answer."
+            />
+          </div>
         </Section>
       </StoryColumn>
 

@@ -10,7 +10,7 @@ export const meta: StoryMeta = {
   subjectId: "foundations",
   concepts: ["Tokenization", "Subwords", "How LLMs See Text", "Context & Cost"],
   difficulty: "Beginner",
-  estimatedMinutes: 7,
+  estimatedMinutes: 9,
   tags: ["ai", "llm", "tokenization", "nlp"],
   status: "published",
   related: [],

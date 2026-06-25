@@ -15,7 +15,7 @@ export const meta: StoryMeta = {
     "Sampling Variation",
   ],
   difficulty: "Beginner",
-  estimatedMinutes: 8,
+  estimatedMinutes: 11,
   tags: ["permutation-test", "ab-testing", "p-value", "simulation"],
   status: "published",
   related: ["the-birthday-paradox", "the-monty-hall-trap"],

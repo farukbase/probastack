@@ -15,7 +15,7 @@ export const meta: StoryMeta = {
     "False Positives",
   ],
   difficulty: "Beginner",
-  estimatedMinutes: 7,
+  estimatedMinutes: 9,
   tags: ["statistics", "bayes", "base-rate", "probability", "false-positives"],
   status: "published",
   related: ["when-averages-lie", "real-or-just-luck"],

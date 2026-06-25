@@ -15,7 +15,7 @@ export const meta: StoryMeta = {
     "Gradient Descent",
   ],
   difficulty: "Beginner",
-  estimatedMinutes: 7,
+  estimatedMinutes: 9,
   tags: ["machine-learning", "regression", "prediction"],
   status: "published",
   related: [],

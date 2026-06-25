@@ -141,17 +141,85 @@ export default function MontyHallStory() {
       </StoryColumn>
 
       <StoryColumn>
+        <Section eyebrow="The math, gently">
+          <Prose>
+            <p>
+              Let&rsquo;s put numbers on the gut feeling. When you first point at
+              a door, you&rsquo;re right with probability <strong>1⁄3</strong>{" "}
+              and wrong with probability <strong>2⁄3</strong>. That split is
+              fixed the instant you choose — before the host touches anything.
+            </p>
+            <p>
+              Now the &ldquo;always switch&rdquo; rule: switching wins{" "}
+              <em>exactly</em>{" "}when your first pick was a goat. That happens
+              2⁄3 of the time. So switching wins 2⁄3 and staying wins 1⁄3 —
+              they&rsquo;re just the two outcomes of that very first guess, seen
+              from opposite sides.
+            </p>
+          </Prose>
+          <Reveal prompt="Show the 1⁄3 vs 2⁄3 breakdown">
+            <Prose>
+              <p>
+                Across the three equally likely first picks — car, goatA, goatB
+                — switching <em>loses</em>{" "}once (when you started on the car)
+                and <em>wins</em>{" "}twice (when you started on a goat). Two wins,
+                one loss: 2⁄3.
+              </p>
+              <p>
+                Why is the host&rsquo;s reveal informative? Because he{" "}
+                <em>must</em>{" "}avoid the car. A random door-opener would
+                sometimes expose the car and ruin the game; this host never
+                does. That constraint is a Bayes update — the reveal carries
+                information, and it concentrates the whole 2⁄3 onto the one
+                door he left closed:
+              </p>
+              <p>
+                P(car behind other door | host opened a goat) = 2⁄3 ≈ 0.667
+              </p>
+            </Prose>
+          </Reveal>
+          <Callout title="The takeaway">
+            Staying bets on your first guess being right (1⁄3). Switching bets
+            on it having been wrong (2⁄3) — and lets the host&rsquo;s
+            constrained reveal cash that bet in. Twice as good, every time.
+          </Callout>
+        </Section>
+      </StoryColumn>
+
+      <StoryColumn>
         <Section eyebrow="Check yourself">
-          <Quiz
-            question="Suppose there are 100 doors. You pick one, and the host opens 98 goats, leaving yours and one other. Switch or stay?"
-            options={[
-              "Stay — it’s now 50/50",
-              "Switch — the other door is almost certainly the car",
-              "It doesn’t matter",
-            ]}
-            correct={1}
-            explanation="Your first pick had a 1/100 chance. The host concentrated the other 99/100 onto that single remaining door. Switching wins 99% of the time — the same logic as three doors, just louder."
-          />
+          <div className="flex flex-col gap-4">
+            <Quiz
+              question="Suppose there are 100 doors. You pick one, and the host opens 98 goats, leaving yours and one other. Switch or stay?"
+              options={[
+                "Stay — it’s now 50/50",
+                "Switch — the other door is almost certainly the car",
+                "It doesn’t matter",
+              ]}
+              correct={1}
+              explanation="Your first pick had a 1/100 chance. The host concentrated the other 99/100 onto that single remaining door. Switching wins 99% of the time — the same logic as three doors, just louder."
+            />
+            <Quiz
+              question="What is it about the host’s action that makes the reveal informative?"
+              options={[
+                "He opens the door slowly, building suspense",
+                "He picks a door uniformly at random from all three",
+                "He knows where the car is and will only ever open a goat",
+              ]}
+              correct={2}
+              explanation="The information comes from the host’s constraint, not the act of opening a door. Because he knows where the car is and must avoid it, the door he leaves closed is a filtered, non-random choice — that’s what concentrates the 2⁄3 onto it."
+            />
+            <Quiz
+              question="Now suppose the host opened a door at RANDOM and just happened to reveal a goat. Given that, what are your odds if you switch?"
+              options={[
+                "50/50 — with a random reveal, switching and staying tie",
+                "2⁄3 — switching still wins, same as before",
+                "1⁄3 — staying is now strictly better",
+              ]}
+              correct={0}
+              explanation="When the reveal is random (and merely happened to be a goat), no constraint was applied, so no extra information lands on the other door. The two remaining doors are genuinely 50/50. The classic 2⁄3 edge depends entirely on the host knowing — and avoiding — the car."
+            />
+          </div>
         </Section>
       </StoryColumn>
     </article>

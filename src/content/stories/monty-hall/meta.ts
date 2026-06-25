@@ -15,7 +15,7 @@ export const meta: StoryMeta = {
     "Intuition vs Probability",
   ],
   difficulty: "Beginner",
-  estimatedMinutes: 9,
+  estimatedMinutes: 11,
   tags: ["probability", "conditional-probability", "bayes", "simulation"],
   status: "published",
   related: ["the-birthday-paradox"],

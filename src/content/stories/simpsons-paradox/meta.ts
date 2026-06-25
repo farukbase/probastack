@@ -15,7 +15,7 @@ export const meta: StoryMeta = {
     "Lurking Variables",
   ],
   difficulty: "Beginner",
-  estimatedMinutes: 7,
+  estimatedMinutes: 9,
   tags: ["statistics", "simpsons-paradox", "confounding"],
   status: "published",
   related: ["real-or-just-luck"],

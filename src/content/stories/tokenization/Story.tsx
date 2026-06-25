@@ -6,6 +6,7 @@ import {
   Stage,
   Callout,
 } from "@/components/story/StoryShell";
+import { Reveal } from "@/components/story/Reveal";
 import { Quiz } from "@/components/interactive/Quiz";
 import { Tokenizer } from "./components/Tokenizer";
 
@@ -97,17 +98,89 @@ export default function TokenizationStory() {
       </StoryColumn>
 
       <StoryColumn>
+        <Section eyebrow="Under the hood">
+          <Prose>
+            <p>
+              So why chop text into these odd pieces at all? The obvious idea —
+              give every <strong>whole word</strong>{" "}its own token — falls apart
+              fast. There are millions of words across the world&rsquo;s
+              languages, plus names, typos, slang, and brand-new coinages every
+              day. A vocabulary that big would be unwieldy, and it would{" "}
+              <em>still</em>{" "}choke the first time it met a word it had never
+              seen. The opposite extreme — one token per{" "}
+              <strong>single character</strong>{" "}— never hits an unknown letter,
+              but it makes every sentence enormously long, and the model has to
+              work much harder to find meaning in a soup of individual letters.
+            </p>
+            <p>
+              The winning compromise is <strong>subword tokenization</strong>.
+              The most common recipe is <strong>Byte-Pair Encoding</strong>{" "}(BPE):
+              start with plain characters, then repeatedly find the most frequent
+              adjacent pair and merge it into a new chunk. Do this thousands of
+              times and you grow a vocabulary of handy building blocks — pieces
+              like &ldquo;ing,&rdquo; &ldquo;tion,&rdquo; and &ldquo; the.&rdquo;
+              Words you see constantly end up as a single token; rare ones get
+              spelled out from smaller pieces. Best of both worlds: short
+              sequences for common text, and nothing is ever truly unknown.
+            </p>
+            <Reveal prompt="See a merge in action">
+              <Prose>
+                <p>
+                  Imagine the training text is full of the word{" "}
+                  &ldquo;lower.&rdquo; We start from characters:{" "}
+                  <code>l o w e r</code>. The pair <code>e r</code>{" "}shows up
+                  everywhere, so it gets merged first → <code>l o w er</code>.
+                  Next, <code>o w</code>{" "}is common, so → <code>l ow er</code>,
+                  then <code>l ow</code>{" "}→ <code>low er</code>. After a few
+                  passes the model has learned the reusable chunks{" "}
+                  &ldquo;low&rdquo; and &ldquo;er&rdquo; — which it can now snap
+                  together for &ldquo;lower,&rdquo; &ldquo;slower,&rdquo; and{" "}
+                  &ldquo;flower&rdquo; alike.
+                </p>
+              </Prose>
+            </Reveal>
+            <p>
+              A useful rule of thumb: <strong>1 token ≈ ¾ of an English word</strong>,
+              so roughly 100 tokens ≈ 75 words. It&rsquo;s only an average —
+              short common words are one token, while a clunky technical term may
+              be three or four — but it&rsquo;s close enough to estimate with.
+            </p>
+          </Prose>
+          <Callout title="Why you should care">
+            Both the things you pay for — the <strong>context window</strong>{" "}(how
+            much the model can hold in mind) and your <strong>bill</strong>{" "}— are
+            counted in tokens, not words or characters. So the way text gets
+            split has real consequences: a token-hungry language can express the
+            same idea in more tokens, which means it fills the window faster and
+            costs more to run.
+          </Callout>
+        </Section>
+      </StoryColumn>
+
+      <StoryColumn>
         <Section eyebrow="Check yourself">
-          <Quiz
-            question="Why does an AI struggle to count the letters in a word like 'strawberry'?"
-            options={[
-              "It isn't smart enough to count to three",
-              "It never sees individual letters — the word arrives as a few multi-letter tokens",
-              "Strawberry is spelled differently in its training data",
-            ]}
-            correct={1}
-            explanation="The model only ever sees tokens, not letters. 'strawberry' comes in as a couple of chunks, so the individual r's aren't visible to count. This same fact explains its trouble with spelling and long-number math."
-          />
+          <div className="flex flex-col gap-4">
+            <Quiz
+              question="Why do modern models use subword tokens instead of giving every whole word its own token?"
+              options={[
+                "Whole-word tokens make sentences too long to process",
+                "Single characters are easier for the model to read",
+                "A whole-word vocabulary would be huge and still break on new, rare, or misspelled words",
+              ]}
+              correct={2}
+              explanation="There are too many possible words to list them all, and a fixed word list still fails the moment it meets something new. Subwords keep the vocabulary manageable and let the model spell out any rare word from familiar pieces."
+            />
+            <Quiz
+              question="Roughly how many English words fit in 100 tokens?"
+              options={[
+                "About 75 words — a token is, on average, about three-quarters of a word",
+                "About 400 words — a token usually covers a whole sentence",
+                "Exactly 100 words — one token always equals one word",
+              ]}
+              correct={0}
+              explanation="A handy rule of thumb is 1 token ≈ ¾ of an English word, so ~100 tokens ≈ 75 words. It's only an average, but it's close enough to estimate context limits and API costs."
+            />
+          </div>
         </Section>
       </StoryColumn>
 
