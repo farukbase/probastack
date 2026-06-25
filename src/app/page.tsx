@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { SITE } from "@/lib/site";
 import { categories } from "@/content/taxonomy";
 import { publishedStories } from "@/content/stories/registry";
 import { StoryCard } from "@/components/site/StoryCard";
@@ -7,8 +8,26 @@ import { StoryCard } from "@/components/site/StoryCard";
 export default function Home() {
   const stories = publishedStories();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      url: SITE.url,
+      logo: `${SITE.url}/icon.png`,
+    },
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="bg-dotgrid border-b border-border">
         <div className="mx-auto max-w-3xl px-5 py-20 text-center sm:py-28">

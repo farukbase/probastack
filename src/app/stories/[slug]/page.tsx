@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { SITE } from "@/lib/site";
 import { storyBySlug, publishedStories } from "@/content/stories/registry";
 import { categoryById, subjectById } from "@/content/taxonomy";
+import { SupportCard } from "@/components/site/Support";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -14,7 +16,26 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const entry = storyBySlug(slug);
   if (!entry) return {};
-  return { title: entry.meta.title, description: entry.meta.summary };
+  const { meta } = entry;
+  const url = `${SITE.url}/stories/${meta.slug}`;
+  return {
+    title: meta.title,
+    description: meta.summary,
+    keywords: [...meta.concepts, ...meta.tags],
+    alternates: { canonical: `/stories/${meta.slug}` },
+    openGraph: {
+      type: "article",
+      title: meta.title,
+      description: meta.summary,
+      url,
+      siteName: SITE.name,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.summary,
+    },
+  };
 }
 
 export default async function StoryPage({ params }: Params) {
@@ -27,8 +48,27 @@ export default async function StoryPage({ params }: Params) {
   const subject = subjectById(meta.categoryId, meta.subjectId);
   const accent = category?.accent ?? "#4f46e5";
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: meta.title,
+    description: meta.summary,
+    url: `${SITE.url}/stories/${meta.slug}`,
+    learningResourceType: "Interactive resource",
+    educationalLevel: meta.difficulty,
+    timeRequired: `PT${meta.estimatedMinutes}M`,
+    about: meta.concepts,
+    inLanguage: "en",
+    isPartOf: { "@type": "WebSite", name: SITE.name, url: SITE.url },
+    publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Story header */}
       <header className="border-b border-border bg-surface">
         <div className="mx-auto max-w-2xl px-5 py-12">
@@ -66,6 +106,9 @@ export default async function StoryPage({ params }: Params) {
 
       {/* The story itself */}
       <Component />
+
+      {/* Support */}
+      <SupportCard />
 
       {/* Footer nav */}
       <div className="mx-auto max-w-2xl px-5 pb-16">

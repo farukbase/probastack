@@ -13,6 +13,8 @@ import { meta as linearRegression } from "./linear-regression/meta";
 import LinearRegressionStory from "./linear-regression/Story";
 import { meta as simpsonsParadox } from "./simpsons-paradox/meta";
 import SimpsonsParadoxStory from "./simpsons-paradox/Story";
+import { meta as testThatCriedWolf } from "./the-test-that-cried-wolf/meta";
+import TestThatCriedWolfStory from "./the-test-that-cried-wolf/Story";
 
 /**
  * The story registry. Add one entry per story: its metadata plus the component
@@ -34,6 +36,7 @@ export const stories: StoryEntry[] = [
   { meta: tokenization, Component: TokenizationStory },
   { meta: linearRegression, Component: LinearRegressionStory },
   { meta: simpsonsParadox, Component: SimpsonsParadoxStory },
+  { meta: testThatCriedWolf, Component: TestThatCriedWolfStory },
 ];
 
 export const publishedStories = (): StoryEntry[] =>

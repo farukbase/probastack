@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CoffeeLink } from "@/components/site/Support";
 
 export function Footer() {
   return (
@@ -15,6 +16,7 @@ export function Footer() {
           proba<span className="text-accent">stack</span>
         </p>
         <p>Explore. Simulate. Understand.</p>
+        <CoffeeLink className="mt-2" />
       </div>
     </footer>
   );
