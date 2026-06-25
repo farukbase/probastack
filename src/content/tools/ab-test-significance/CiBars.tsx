@@ -20,7 +20,7 @@ export function CiBars({
   format: (n: number) => string;
   confPct: number;
 }) {
-  const W = 360;
+  const W = 480;
   const H = 200;
   const padX = 28;
   const padTop = 24;

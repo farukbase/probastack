@@ -21,7 +21,7 @@ export function NullCurve({
   tails: "two" | "one";
   significant: boolean;
 }) {
-  const W = 360;
+  const W = 480;
   const H = 200;
   const padX = 16;
   const padTop = 16;

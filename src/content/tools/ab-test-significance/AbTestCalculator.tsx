@@ -10,6 +10,7 @@ import {
 } from "./stats";
 import { CiBars, type BarDatum } from "./CiBars";
 import { NullCurve } from "./NullCurve";
+import { ZoomableChart } from "@/components/site/ZoomableChart";
 
 /**
  * A/B significance calculator. Two metric types — binary (conversion rate,
@@ -408,25 +409,19 @@ export function AbTestCalculator() {
 
       {/* Charts */}
       {r.valid && (
-        <div className="mt-5 grid gap-4 lg:grid-cols-2">
-          <figure className="rounded-xl border border-border bg-surface p-4">
-            <figcaption className="mb-1 text-sm font-medium text-foreground">
-              {r.kind === "rate" ? "Conversion rates" : "Means"} with confidence intervals
-            </figcaption>
-            <p className="mb-2 text-xs text-muted">
-              When the whiskers overlap a lot, the gap is probably noise.
-            </p>
+        <div className="mt-5 grid gap-4">
+          <ZoomableChart
+            label={`${r.kind === "rate" ? "Conversion rates" : "Means"} with confidence intervals`}
+            hint="When the whiskers overlap a lot, the gap is probably noise."
+          >
             <CiBars data={barData} format={barFormat} confPct={validConf ? confNum : 95} />
-          </figure>
-          <figure className="rounded-xl border border-border bg-surface p-4">
-            <figcaption className="mb-1 text-sm font-medium text-foreground">
-              The null distribution
-            </figcaption>
-            <p className="mb-2 text-xs text-muted">
-              Shaded tail = the p-value. Dashed lines = your threshold; they move
-              with the confidence level.
-              {r.dist === "t" && ` (Student’s t, df ≈ ${Math.round(r.df)})`}
-            </p>
+          </ZoomableChart>
+          <ZoomableChart
+            label="The null distribution"
+            hint={`Shaded tail = the p-value. Dashed lines = your threshold; they move with the confidence level.${
+              r.dist === "t" ? ` (Student’s t, df ≈ ${Math.round(r.df)})` : ""
+            }`}
+          >
             <NullCurve
               dist={r.dist}
               df={r.df}
@@ -435,7 +430,7 @@ export function AbTestCalculator() {
               tails={tails}
               significant={significant}
             />
-          </figure>
+          </ZoomableChart>
         </div>
       )}
     </div>

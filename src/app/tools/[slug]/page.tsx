@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 import { toolBySlug, liveTools } from "@/content/tools/registry";
 import { categoryById } from "@/content/taxonomy";
+import { SupportCard } from "@/components/site/Support";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -16,16 +17,30 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const entry = toolBySlug(slug);
   if (!entry) return {};
   const { meta } = entry;
+  const desc = meta.description || meta.tagline;
+  const category = categoryById(meta.categoryId);
   return {
     title: meta.title,
-    description: meta.description || meta.tagline,
+    description: desc,
+    keywords: [
+      meta.title,
+      "calculator",
+      "online tool",
+      "free",
+      ...(category ? [category.title] : []),
+    ],
     alternates: { canonical: `/tools/${meta.slug}` },
     openGraph: {
       type: "website",
       title: meta.title,
-      description: meta.description || meta.tagline,
+      description: desc,
       url: `${SITE.url}/tools/${meta.slug}`,
       siteName: SITE.name,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: desc,
     },
   };
 }
@@ -87,6 +102,8 @@ export default async function ToolPage({ params }: Params) {
       <div className="mx-auto max-w-3xl px-5 py-10">
         <Component />
       </div>
+
+      <SupportCard />
 
       <div className="mx-auto max-w-3xl px-5 pb-16">
         <Link href="/tools" className="text-sm font-medium text-accent">
