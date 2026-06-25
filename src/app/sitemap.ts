@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
 import { categories } from "@/content/taxonomy";
 import { publishedStories } from "@/content/stories/registry";
+import { liveTools } from "@/content/tools/registry";
 
 /**
  * Generated sitemap. Home, every category, and every published story are
@@ -34,5 +35,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...home, ...cats, ...stories];
+  const toolsIndex: MetadataRoute.Sitemap = [
+    {
+      url: `${SITE.url}/tools`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+  ];
+
+  const toolPages: MetadataRoute.Sitemap = liveTools().map((t) => ({
+    url: `${SITE.url}/tools/${t.meta.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...home, ...cats, ...stories, ...toolsIndex, ...toolPages];
 }

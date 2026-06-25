@@ -25,6 +25,9 @@ export function Header() {
           <Link href="/#stories" className="transition hover:text-foreground">
             Stories
           </Link>
+          <Link href="/tools" className="transition hover:text-foreground">
+            Tools
+          </Link>
         </nav>
       </div>
     </header>

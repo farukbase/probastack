@@ -48,3 +48,24 @@ export interface StoryMeta {
   /** Slugs of related stories shown at the end. */
   related?: string[];
 }
+
+export type ToolStatus = "live" | "coming-soon";
+
+/**
+ * A small, self-contained interactive utility (calculator, visualizer, …).
+ * Tools share the taxonomy's categories for theming, but are otherwise their
+ * own data-driven list, mirroring the story registry.
+ */
+export interface ToolMeta {
+  slug: string;
+  title: string;
+  /** One-liner for cards. */
+  tagline: string;
+  /** Longer description for the tool page header. */
+  description: string;
+  /** Reuses a taxonomy category id for the accent + grouping. */
+  categoryId: string;
+  /** Emoji shown on the card. */
+  icon: string;
+  status: ToolStatus;
+}
