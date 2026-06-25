@@ -7,6 +7,7 @@ import {
   Callout,
 } from "@/components/story/StoryShell";
 import { Reveal } from "@/components/story/Reveal";
+import { M, MathBlock } from "@/components/story/Math";
 import { Quiz } from "@/components/interactive/Quiz";
 import { BirthdayRoom } from "./components/BirthdayRoom";
 import { BirthdayTrials } from "./components/BirthdayTrials";
@@ -107,11 +108,8 @@ export default function BirthdayParadoxStory() {
             <p>
               The clean way to compute it is to flip the question: find the
               probability that <em>nobody</em>{" "}matches and subtract from 1. Each
-              new person must dodge all the birthdays already taken —
-              <span className="font-mono text-[0.95em]">
-                {" "}
-                1 − (365/365)(364/365)(363/365)…
-              </span>{" "}
+              new person must dodge all the birthdays already taken —{" "}
+              <M>{String.raw`1 - \tfrac{365}{365}\cdot\tfrac{364}{365}\cdot\tfrac{363}{365}\cdots`}</M>{" "}
               — and that product collapses quickly. Here&rsquo;s the full curve:
             </p>
           </Prose>
@@ -132,28 +130,22 @@ export default function BirthdayParadoxStory() {
             </p>
             <p>
               The first person can land on any day. The second has to dodge that
-              one taken day, so they avoid it with probability 364⁄365. The third
-              must dodge two days (363⁄365), the fourth three (362⁄365), and so
-              on. Multiply those dodges together and you get the probability that
-              the whole room stays collision-free.
+              one taken day, so they avoid it with probability{" "}
+              <M>{String.raw`\tfrac{364}{365}`}</M>. The third must dodge two days{" "}
+              (<M>{String.raw`\tfrac{363}{365}`}</M>), the fourth three{" "}
+              (<M>{String.raw`\tfrac{362}{365}`}</M>), and so on. Multiply those
+              dodges together and you get the probability that the whole room
+              stays collision-free.
             </p>
           </Prose>
           <Reveal prompt="Show me the formula">
             <Prose>
-              <p>
-                <span className="font-mono text-[0.95em]">
-                  P(no match) = (365⁄365) × (364⁄365) × … × ((365 − n + 1)⁄365)
-                </span>
-                , which packs down to{" "}
-                <span className="font-mono text-[0.95em]">
-                  P(no match) = 365! ⁄ (365ⁿ × (365 − n)!)
-                </span>
-                . The answer we actually want is the flip side:{" "}
-                <span className="font-mono text-[0.95em]">
-                  P(at least one match) = 1 − P(no match)
-                </span>
-                .
-              </p>
+              <p>Multiply the dodges together:</p>
+              <MathBlock>{String.raw`P(\text{no match}) = \frac{365}{365}\times\frac{364}{365}\times\cdots\times\frac{365-n+1}{365}`}</MathBlock>
+              <p>which packs down to a tidy closed form:</p>
+              <MathBlock>{String.raw`P(\text{no match}) = \frac{365!}{365^{n}\,(365-n)!}`}</MathBlock>
+              <p>The answer we actually want is the flip side:</p>
+              <MathBlock>{String.raw`P(\text{at least one match}) = 1 - \frac{365!}{365^{n}\,(365-n)!}`}</MathBlock>
             </Prose>
           </Reveal>
           <Prose>
@@ -161,13 +153,16 @@ export default function BirthdayParadoxStory() {
               So why does it feel so wrong? Because our gut pictures{" "}
               <em>someone matching me</em> — one fixed birthday against the
               crowd. But the real test is whether <em>any</em>{" "}pair matches.
-              With n people there are n(n − 1)⁄2 pairs, and that grows fast.
+              With n people there are{" "}
+              <M>{String.raw`\binom{n}{2} = \tfrac{n(n-1)}{2}`}</M>{" "}pairs, and
+              that grows fast.
             </p>
           </Prose>
           <Callout title="Count the pairs, not the people">
-            At n = 23 there are 23 × 22 ⁄ 2 = <strong>253</strong>{" "}distinct
-            pairs — 253 separate chances for a collision. That&rsquo;s why the
-            answer is a coin flip, not the tiny number intuition expects.
+            At <M>{String.raw`n = 23`}</M> there are{" "}
+            <M>{String.raw`\tfrac{23 \times 22}{2} = 253`}</M>{" "}distinct pairs —
+            253 separate chances for a collision. That&rsquo;s why the answer is a
+            coin flip, not the tiny number intuition expects.
           </Callout>
           <Prose>
             <p>

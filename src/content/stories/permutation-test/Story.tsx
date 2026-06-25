@@ -7,6 +7,7 @@ import {
   Callout,
 } from "@/components/story/StoryShell";
 import { Reveal } from "@/components/story/Reveal";
+import { M, MathBlock } from "@/components/story/Math";
 import { Quiz } from "@/components/interactive/Quiz";
 import { TipsSetup } from "./components/TipsSetup";
 import { ShuffleTest } from "./components/ShuffleTest";
@@ -159,8 +160,10 @@ export default function PermutationTestStory() {
             <p>
               To measure the argument we need a single number — a{" "}
               <strong>test statistic</strong>. Ours is the obvious one: the
-              observed difference in group means, Maria&rsquo;s average minus
-              Sam&rsquo;s. That came out to <strong>$4.25</strong>. Big numbers
+              observed difference in group means,{" "}
+              <M>{String.raw`\Delta = \bar{x}_\text{smiley} - \bar{x}_\text{none}`}</M>,
+              Maria&rsquo;s average minus Sam&rsquo;s. That came out to{" "}
+              <strong>$4.25</strong>. Big numbers
               are suspicious for the null; near-zero numbers are comfortable for
               it.
             </p>
@@ -181,9 +184,7 @@ export default function PermutationTestStory() {
           </Prose>
           <Reveal prompt="Show me the formula">
             <Prose>
-              <p style={{ textAlign: "center" }}>
-                p = (shuffles with difference ≥ observed) ⁄ (total shuffles)
-              </p>
+              <MathBlock>{String.raw`p = \frac{\#\{\text{shuffles with difference} \ge \text{observed}\}}{\text{total shuffles}}`}</MathBlock>
               <p>
                 Read it left to right: numerator is how many imaginary, label-shuffled
                 worlds matched or beat Maria&rsquo;s real <strong>$4.25</strong>{" "}gap;

@@ -7,6 +7,7 @@ import {
   Callout,
 } from "@/components/story/StoryShell";
 import { Reveal } from "@/components/story/Reveal";
+import { M, MathBlock } from "@/components/story/Math";
 import { Quiz } from "@/components/interactive/Quiz";
 import { BaseRateLab } from "./components/BaseRateLab";
 
@@ -146,41 +147,41 @@ export default function TestThatCriedWolfStory() {
               Everything so far was the picture. Here&rsquo;s the same idea with
               its proper names, so you&rsquo;d recognize it on a whiteboard. Three
               numbers do all the work:{" "}
-              <strong>sensitivity</strong> = P(test positive | sick), the chance a
-              sick person tests positive; <strong>specificity</strong> = P(test
-              negative | healthy), the chance a healthy person tests negative; and
-              the <strong>base rate</strong> = P(sick), how common the thing is
-              before any test. The bar after &ldquo;|&rdquo; just means
+              <strong>sensitivity</strong>{" "}
+              <M>{String.raw`P(+\mid \text{sick})`}</M>, the chance a sick person
+              tests positive; <strong>specificity</strong>{" "}
+              <M>{String.raw`P(-\mid \text{healthy})`}</M>, the chance a healthy
+              person tests negative; and the <strong>base rate</strong>{" "}
+              <M>{String.raw`P(\text{sick})`}</M>, how common the thing is before
+              any test. The bar &ldquo;<M>{String.raw`\mid`}</M>&rdquo; just means
               &ldquo;given&rdquo;.
             </p>
             <p>
               What you actually want isn&rsquo;t any of those — it&rsquo;s the
               flipped question: <em>given a positive, am I sick?</em>{" "}
-              That&rsquo;s the <strong>positive predictive value</strong>, P(sick
-              | positive),
-              and the tool that flips a conditional around is Bayes&rsquo; theorem.
+              That&rsquo;s the <strong>positive predictive value</strong>,{" "}
+              <M>{String.raw`P(\text{sick}\mid +)`}</M>, and the tool that flips a
+              conditional around is Bayes&rsquo; theorem.
             </p>
           </Prose>
           <Reveal prompt="Show me Bayes' theorem">
             <Prose>
+              <p>The tool that flips a conditional around is Bayes&rsquo; theorem:</p>
+              <MathBlock>{String.raw`P(\text{sick}\mid +) = \frac{P(+\mid \text{sick})\,P(\text{sick})}{P(+\mid \text{sick})\,P(\text{sick}) + P(+\mid \text{healthy})\,P(\text{healthy})}`}</MathBlock>
               <p>
-                P(sick | positive) = [ P(positive | sick) × P(sick) ] ⁄ [ P(positive
-                | sick) × P(sick) + P(positive | healthy) × P(healthy) ].
+                Now plug in the story&rsquo;s numbers — base rate 1 in 1,000 so{" "}
+                <M>{String.raw`P(\text{sick}) = 0.001`}</M>, and a 99% test
+                (sensitivity 0.99, so a healthy person is wrongly flagged with
+                probability 0.01):
               </p>
+              <MathBlock>{String.raw`P(\text{sick}\mid +) = \frac{0.99 \times 0.001}{0.99 \times 0.001 + 0.01 \times 0.999} \approx 0.090`}</MathBlock>
               <p>
-                Now plug in the story&rsquo;s numbers — base rate 1 in 1,000
-                (P(sick) = 0.001), and a 99% test (sensitivity 0.99, so a healthy
-                person is wrongly flagged with probability 0.01):
-              </p>
-              <p>
-                P(sick | positive) = (0.99 × 0.001) ⁄ (0.99 × 0.001 + 0.01 × 0.999)
-                ≈ 0.090, i.e. about <strong>9%</strong>.
-              </p>
-              <p>
-                That&rsquo;s exactly the <em>10 real versus 100 false alarms</em>{" "}from
-                before. The top of the fraction is the 10 true positives (0.99 ×
-                0.001); the bottom adds the ~100 false alarms (0.01 × 0.999) on top
-                of them. Same answer, just written tidily.
+                That&rsquo;s about <strong>9%</strong> — exactly the{" "}
+                <em>10 real versus 100 false alarms</em>{" "}from before. The top of
+                the fraction is the 10 true positives{" "}
+                <M>{String.raw`(0.99 \times 0.001)`}</M>; the bottom adds the ~100
+                false alarms <M>{String.raw`(0.01 \times 0.999)`}</M> on top of
+                them. Same answer, just written tidily.
               </p>
             </Prose>
           </Reveal>

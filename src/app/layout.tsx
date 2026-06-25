@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Newsreader } from "next/font/google";
+import "katex/dist/katex.min.css";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 import { Header } from "@/components/site/Header";

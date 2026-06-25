@@ -7,6 +7,7 @@ import {
   Callout,
 } from "@/components/story/StoryShell";
 import { Reveal } from "@/components/story/Reveal";
+import { M } from "@/components/story/Math";
 import { Quiz } from "@/components/interactive/Quiz";
 import { Tokenizer } from "./components/Tokenizer";
 
@@ -140,7 +141,8 @@ export default function TokenizationStory() {
               </Prose>
             </Reveal>
             <p>
-              A useful rule of thumb: <strong>1 token ≈ ¾ of an English word</strong>,
+              A useful rule of thumb:{" "}
+              <M>{String.raw`1\ \text{token} \approx \tfrac{3}{4}\ \text{English word}`}</M>,
               so roughly 100 tokens ≈ 75 words. It&rsquo;s only an average —
               short common words are one token, while a clunky technical term may
               be three or four — but it&rsquo;s close enough to estimate with.

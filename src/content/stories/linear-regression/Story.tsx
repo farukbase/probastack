@@ -7,6 +7,7 @@ import {
   Callout,
 } from "@/components/story/StoryShell";
 import { Reveal } from "@/components/story/Reveal";
+import { M, MathBlock } from "@/components/story/Math";
 import { Quiz } from "@/components/interactive/Quiz";
 import { RegressionLab } from "./components/RegressionLab";
 
@@ -105,17 +106,18 @@ export default function LinearRegressionStory() {
             <p>
               None of this needs scary symbols, but a peek under the hood is
               worth it. The line you dragged is just{" "}
-              <strong>ŷ = b + m·x</strong>: pick an intercept{" "}
-              <em>b</em>{" "}(where the line starts) and a slope <em>m</em>{" "}(how
-              steeply it climbs), feed in an <em>x</em> (hours), and out comes
-              ŷ, your prediction.
+              <M>{String.raw`\hat{y} = b + m x`}</M>: pick an intercept{" "}
+              <M>{String.raw`b`}</M>{" "}(where the line starts) and a slope{" "}
+              <M>{String.raw`m`}</M>{" "}(how steeply it climbs), feed in an{" "}
+              <M>{String.raw`x`}</M>{" "}(hours), and out comes{" "}
+              <M>{String.raw`\hat{y}`}</M>, your prediction.
             </p>
             <p>
               For any real point, the <strong>residual</strong>{" "}is the
               vertical gap between what actually happened and what the line
-              guessed: residual = yᵢ − ŷᵢ. Those are the little red lines in the
-              lab. Some points sit above the line, some below — so the errors
-              come with plus and minus signs.
+              guessed: <M>{String.raw`y_i - \hat{y}_i`}</M>. Those are the little
+              red lines in the lab. Some points sit above the line, some below —
+              so the errors come with plus and minus signs.
             </p>
             <p>
               To score a whole line with one number, we use{" "}
@@ -127,14 +129,19 @@ export default function LinearRegressionStory() {
           </Prose>
           <Reveal prompt="Show me the formula">
             <Prose>
+              <MathBlock>{String.raw`\text{MSE} = \frac{1}{n}\sum_{i=1}^{n}\left(y_i - \hat{y}_i\right)^2`}</MathBlock>
               <p>
-                MSE = (1⁄n) Σ (yᵢ − ŷᵢ)². <strong>Least squares</strong>{" "}is
-                simply the one line that makes this number as small as it can
-                possibly go — and beautifully, you don&rsquo;t have to search
-                for it. There&rsquo;s a clean closed-form answer: the slope is{" "}
-                <em>m ≈ covariance(x, y) ⁄ variance(x)</em>, and the intercept{" "}
-                <em>b</em>{" "}follows so that the line passes exactly through the
-                average x and average y. Plug in, done.
+                <strong>Least squares</strong>{" "}is simply the one line that
+                makes this number as small as it can possibly go — and
+                beautifully, you don&rsquo;t have to search for it.
+                There&rsquo;s a clean closed-form answer for the slope{" "}
+                <M>{String.raw`m`}</M>:
+              </p>
+              <MathBlock>{String.raw`m = \frac{\operatorname{cov}(x,y)}{\operatorname{var}(x)}`}</MathBlock>
+              <p>
+                and the intercept <M>{String.raw`b`}</M>{" "}follows so that the
+                line passes exactly through the average x and average y. Plug in,
+                done.
               </p>
             </Prose>
           </Reveal>
@@ -143,16 +150,18 @@ export default function LinearRegressionStory() {
               But what if you couldn&rsquo;t solve it directly — too many knobs,
               too messy a rule? Then you&rsquo;d do what the lab&rsquo;s
               &ldquo;Let it learn&rdquo; button does: start anywhere, check which
-              way tilting <em>m</em>{" "}and lifting <em>b</em>{" "}makes the error
-              drop, and take a small step that way. Repeat until you reach the
+              way tilting <M>{String.raw`m`}</M>{" "}and lifting{" "}
+              <M>{String.raw`b`}</M>{" "}makes the error drop, and take a small step
+              that way. Repeat until you reach the
               bottom of the error surface. That &ldquo;roll downhill&rdquo; move
               is gradient descent — the exact same idea that trains models with
               billions of knobs.
             </p>
           </Prose>
           <Callout title="The whole recipe">
-            Write the rule (ŷ = b + m·x), measure how wrong it is (MSE), and find
-            the knobs that make that number smallest — either in one clean
+            Write the rule (<M>{String.raw`\hat{y} = b + m x`}</M>), measure how
+            wrong it is (MSE), and find the knobs that make that number
+            smallest — either in one clean
             formula or by rolling downhill. Bigger models change the rule and add
             knobs, but never the recipe.
           </Callout>

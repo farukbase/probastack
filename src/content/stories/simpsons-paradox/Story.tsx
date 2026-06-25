@@ -7,6 +7,7 @@ import {
   Callout,
 } from "@/components/story/StoryShell";
 import { Reveal } from "@/components/story/Reveal";
+import { M, MathBlock } from "@/components/story/Math";
 import { Quiz } from "@/components/interactive/Quiz";
 import { SimpsonChart } from "./components/SimpsonChart";
 import { CaseMix } from "./components/CaseMix";
@@ -112,10 +113,13 @@ export default function SimpsonsParadoxStory() {
               Here&rsquo;s the quiet move that trips everyone up. The combined
               cure rate is <em>not</em>{" "}the average of the two subgroup rates.
               You don&rsquo;t add the percentages and halve them. You pool the
-              raw counts: combined = (cured₁ + cured₂) ⁄ (trials₁ + trials₂). In
-              effect each group gets a <strong>weight</strong>{" "}equal to how many
-              patients it had — a big group pulls the overall number toward its
-              own rate, a tiny group barely tugs at all.
+              raw counts:
+            </p>
+            <MathBlock>{String.raw`\text{combined} = \frac{c_1 + c_2}{t_1 + t_2}`}</MathBlock>
+            <p>
+              In effect each group gets a <strong>weight</strong>{" "}equal to how
+              many patients it had — a big group pulls the overall number toward
+              its own rate, a tiny group barely tugs at all.
             </p>
             <p>
               That weighting is the whole trick. A treatment can win every
@@ -146,17 +150,24 @@ export default function SimpsonsParadoxStory() {
           <Reveal prompt="Show me the numbers">
             <Prose>
               <p>
-                Small stones: A cured 81 of 87 (≈ 93%), B cured 234 of 270
-                (≈ 87%). Large stones: A cured 192 of 263 (≈ 73%), B cured 55
-                of 80 (≈ 69%). A wins both — by a clear margin.
+                Small stones: A cured 81 of 87{" "}
+                <M>{String.raw`\left(\tfrac{81}{87} \approx 93\%\right)`}</M>, B
+                cured 234 of 270{" "}
+                <M>{String.raw`\left(\tfrac{234}{270} \approx 87\%\right)`}</M>.
+                Large stones: A cured 192 of 263{" "}
+                <M>{String.raw`\left(\tfrac{192}{263} \approx 73\%\right)`}</M>, B
+                cured 55 of 80{" "}
+                <M>{String.raw`\left(\tfrac{55}{80} \approx 69\%\right)`}</M>. A
+                wins both — by a clear margin.
               </p>
               <p>
-                Now pool the counts, not the percentages. Treatment A: (81 +
-                192) ⁄ (87 + 263) = 273 ⁄ 350 ≈ 78%. Treatment B: (234 + 55) ⁄
-                (270 + 80) = 289 ⁄ 350 ≈ 83%. B wins overall — because 263 of
-                A&rsquo;s 350 patients were the hard large-stone cases, while 270
-                of B&rsquo;s 350 were the easy small ones. The weights, not the
-                treatments, decided the headline.
+                Now pool the counts, not the percentages. Treatment A:{" "}
+                <M>{String.raw`\tfrac{81 + 192}{87 + 263} = \tfrac{273}{350} \approx 78\%`}</M>.
+                Treatment B:{" "}
+                <M>{String.raw`\tfrac{234 + 55}{270 + 80} = \tfrac{289}{350} \approx 83\%`}</M>.
+                B wins overall — because 263 of A&rsquo;s 350 patients were the
+                hard large-stone cases, while 270 of B&rsquo;s 350 were the easy
+                small ones. The weights, not the treatments, decided the headline.
               </p>
             </Prose>
           </Reveal>
@@ -191,7 +202,7 @@ export default function SimpsonsParadoxStory() {
                 "The higher subgroup rate always wins the overall comparison",
               ]}
               correct={0}
-              explanation="Combined = (cured₁ + cured₂) ⁄ (trials₁ + trials₂). That's a size-weighted average: a group with many patients dominates the pooled figure, while a tiny group barely moves it. Equal-weighting the two percentages would give a different — and misleading — answer."
+              explanation="Combined = (cured in group 1 + cured in group 2) / (total in group 1 + total in group 2). That's a size-weighted average: a group with many patients dominates the pooled figure, while a tiny group barely moves it. Equal-weighting the two percentages would give a different — and misleading — answer."
             />
             <Quiz
               question="What does the paradox actually require, and what's the right fix?"

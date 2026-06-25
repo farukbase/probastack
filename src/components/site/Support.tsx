@@ -82,7 +82,7 @@ export function SupportCard() {
               <span className="font-medium text-foreground">appetite</span>. Toss
               me a snack?
             </p>
-            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:justify-start">
+            <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
               <a
                 href={SITE.buyMeACoffee}
                 target="_blank"
@@ -94,7 +94,9 @@ export function SupportCard() {
                 </span>{" "}
                 Feed Proby
               </a>
-              <span className="text-xs text-muted">Free &amp; ad-free, always.</span>
+              <span className="whitespace-nowrap text-xs text-muted">
+                Free &amp; ad-free, always.
+              </span>
             </div>
           </div>
         </div>

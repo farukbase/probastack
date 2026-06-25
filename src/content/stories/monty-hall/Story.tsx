@@ -7,6 +7,7 @@ import {
   Callout,
 } from "@/components/story/StoryShell";
 import { Reveal } from "@/components/story/Reveal";
+import { M, MathBlock } from "@/components/story/Math";
 import { VideoEmbed } from "@/components/story/VideoEmbed";
 import { Quiz } from "@/components/interactive/Quiz";
 import { DoorGame } from "./components/DoorGame";
@@ -99,9 +100,10 @@ export default function MontyHallStory() {
           </Stage>
           <Prose>
             <p>
-              The more trials you run, the tighter the rates lock onto 1⁄3 and
-              2⁄3. So where does the missing intuition go? Why isn&rsquo;t it a
-              coin flip?
+              The more trials you run, the tighter the rates lock onto{" "}
+              <M>{String.raw`\tfrac{1}{3}`}</M>{" "}and{" "}
+              <M>{String.raw`\tfrac{2}{3}`}</M>. So where does the missing
+              intuition go? Why isn&rsquo;t it a coin flip?
             </p>
           </Prose>
         </Section>
@@ -115,10 +117,12 @@ export default function MontyHallStory() {
           </Lead>
           <Prose>
             <p>
-              Your first pick was right 1⁄3 of the time and wrong 2⁄3 of the
-              time. The host&rsquo;s reveal doesn&rsquo;t change that — but it
-              quietly sweeps the entire 2⁄3 of &ldquo;you were wrong&rdquo; onto
-              the single remaining door. Look at all three equally likely cases:
+              Your first pick was right <M>{String.raw`\tfrac{1}{3}`}</M>{" "}of
+              the time and wrong <M>{String.raw`\tfrac{2}{3}`}</M>{" "}of the time.
+              The host&rsquo;s reveal doesn&rsquo;t change that — but it quietly
+              sweeps the entire <M>{String.raw`\tfrac{2}{3}`}</M>{" "}of &ldquo;you
+              were wrong&rdquo; onto the single remaining door. Look at all three
+              equally likely cases:
             </p>
           </Prose>
           <Stage>
@@ -128,7 +132,7 @@ export default function MontyHallStory() {
             <p>
               Switching turns every &ldquo;you first grabbed a goat&rdquo; into a
               win — and that happens twice as often as grabbing the car. The host
-              hands you the 2⁄3 he was holding.
+              hands you the <M>{String.raw`\tfrac{2}{3}`}</M>{" "}he was holding.
             </p>
           </Prose>
           <Callout title="The real lesson">
@@ -145,42 +149,44 @@ export default function MontyHallStory() {
           <Prose>
             <p>
               Let&rsquo;s put numbers on the gut feeling. When you first point at
-              a door, you&rsquo;re right with probability <strong>1⁄3</strong>{" "}
-              and wrong with probability <strong>2⁄3</strong>. That split is
-              fixed the instant you choose — before the host touches anything.
+              a door, you&rsquo;re right with probability{" "}
+              <M>{String.raw`\tfrac{1}{3}`}</M>{" "}and wrong with probability{" "}
+              <M>{String.raw`\tfrac{2}{3}`}</M>. That split is fixed the instant
+              you choose — before the host touches anything.
             </p>
             <p>
               Now the &ldquo;always switch&rdquo; rule: switching wins{" "}
-              <em>exactly</em>{" "}when your first pick was a goat. That happens
-              2⁄3 of the time. So switching wins 2⁄3 and staying wins 1⁄3 —
-              they&rsquo;re just the two outcomes of that very first guess, seen
-              from opposite sides.
+              <em>exactly</em>{" "}when your first pick was a goat. That happens{" "}
+              <M>{String.raw`\tfrac{2}{3}`}</M>{" "}of the time. So switching wins{" "}
+              <M>{String.raw`\tfrac{2}{3}`}</M>{" "}and staying wins{" "}
+              <M>{String.raw`\tfrac{1}{3}`}</M> — they&rsquo;re just the two
+              outcomes of that very first guess, seen from opposite sides.
             </p>
           </Prose>
-          <Reveal prompt="Show the 1⁄3 vs 2⁄3 breakdown">
+          <Reveal prompt="Show the 1/3 vs 2/3 breakdown">
             <Prose>
               <p>
                 Across the three equally likely first picks — car, goatA, goatB
                 — switching <em>loses</em>{" "}once (when you started on the car)
                 and <em>wins</em>{" "}twice (when you started on a goat). Two wins,
-                one loss: 2⁄3.
+                one loss: <M>{String.raw`\tfrac{2}{3}`}</M>.
               </p>
               <p>
                 Why is the host&rsquo;s reveal informative? Because he{" "}
                 <em>must</em>{" "}avoid the car. A random door-opener would
                 sometimes expose the car and ruin the game; this host never
                 does. That constraint is a Bayes update — the reveal carries
-                information, and it concentrates the whole 2⁄3 onto the one
-                door he left closed:
+                information, and it concentrates the whole{" "}
+                <M>{String.raw`\tfrac{2}{3}`}</M>{" "}onto the one door he left
+                closed:
               </p>
-              <p>
-                P(car behind other door | host opened a goat) = 2⁄3 ≈ 0.667
-              </p>
+              <MathBlock>{String.raw`P(\text{car in other door}\mid \text{host showed a goat}) = \tfrac{2}{3} \approx 0.667`}</MathBlock>
             </Prose>
           </Reveal>
           <Callout title="The takeaway">
-            Staying bets on your first guess being right (1⁄3). Switching bets
-            on it having been wrong (2⁄3) — and lets the host&rsquo;s
+            Staying bets on your first guess being right{" "}
+            (<M>{String.raw`\tfrac{1}{3}`}</M>). Switching bets on it having been
+            wrong (<M>{String.raw`\tfrac{2}{3}`}</M>) — and lets the host&rsquo;s
             constrained reveal cash that bet in. Twice as good, every time.
           </Callout>
         </Section>
@@ -207,17 +213,17 @@ export default function MontyHallStory() {
                 "He knows where the car is and will only ever open a goat",
               ]}
               correct={2}
-              explanation="The information comes from the host’s constraint, not the act of opening a door. Because he knows where the car is and must avoid it, the door he leaves closed is a filtered, non-random choice — that’s what concentrates the 2⁄3 onto it."
+              explanation="The information comes from the host’s constraint, not the act of opening a door. Because he knows where the car is and must avoid it, the door he leaves closed is a filtered, non-random choice — that’s what concentrates the 2/3 onto it."
             />
             <Quiz
               question="Now suppose the host opened a door at RANDOM and just happened to reveal a goat. Given that, what are your odds if you switch?"
               options={[
                 "50/50 — with a random reveal, switching and staying tie",
-                "2⁄3 — switching still wins, same as before",
-                "1⁄3 — staying is now strictly better",
+                "2/3 — switching still wins, same as before",
+                "1/3 — staying is now strictly better",
               ]}
               correct={0}
-              explanation="When the reveal is random (and merely happened to be a goat), no constraint was applied, so no extra information lands on the other door. The two remaining doors are genuinely 50/50. The classic 2⁄3 edge depends entirely on the host knowing — and avoiding — the car."
+              explanation="When the reveal is random (and merely happened to be a goat), no constraint was applied, so no extra information lands on the other door. The two remaining doors are genuinely 50/50. The classic 2/3 edge depends entirely on the host knowing — and avoiding — the car."
             />
           </div>
         </Section>
