@@ -97,3 +97,38 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .proby-emerge, .proby-prehop { animation: none; }
 }
+
+/* "Feed Proby" support card — bobbing snack, floating treats, heart puffs. */
+@keyframes bmc-bob {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50%      { transform: translateY(-4px) rotate(-6deg); }
+}
+.bmc-cup { animation: bmc-bob 2.4s ease-in-out infinite; transform-origin: bottom center; }
+
+/* Snacks drifting down + sideways around the dashed border. */
+@keyframes snack-fall {
+  0%   { transform: translateY(-6px) rotate(0deg); opacity: 0; }
+  15%  { opacity: 0.95; }
+  85%  { opacity: 0.95; }
+  100% { transform: translateY(22px) rotate(28deg); opacity: 0; }
+}
+.snack {
+  animation: snack-fall 6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Little hearts puffing up off Proby. */
+@keyframes heart-float {
+  0%   { transform: translateY(2px) scale(0.7); opacity: 0; }
+  25%  { opacity: 1; }
+  100% { transform: translateY(-22px) scale(1.05); opacity: 0; }
+}
+.heart {
+  animation: heart-float 3s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bmc-cup, .snack, .heart { animation: none; }
+  .snack, .heart { opacity: 0.85; }
+}
